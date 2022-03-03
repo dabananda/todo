@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import Header from './components/header/Header';
+import Lists from './components/lists/Lists';
+import Footer from './components/footer/Footer';
+import './app.scss';
 
 function App() {
+  const [value, setValue] = useState('');
+  const [lists, setLists] = useState([]);
+
+  const handleChange = event => {
+    setValue(event.target.value);
+  };
+
+  const handleLists = () => {
+    if (value !== '') {
+      const newLists = [...lists, value];
+      setLists(newLists);
+      setValue('');
+    }
+  };
+
+  const handleDelete = item => {
+    const todos = lists;
+    const newToDos = todos.filter(todo => todo !== item);
+    setLists(newToDos);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid bg-light">
+      <div className="app">
+        <Header
+          value={value}
+          handleChange={handleChange}
+          handleLists={handleLists}
+        />
+        <Lists lists={lists} handleDelete={handleDelete} />
+      </div>
+      <Footer />
     </div>
   );
 }
