@@ -9,7 +9,7 @@ const Header = props => {
         <input
           id="input"
           type="text"
-          className="form-control"
+          className="form-control form-control-lg"
           placeholder="Add Task..."
           value={props.value}
           onChange={props.handleChange}
