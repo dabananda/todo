@@ -4,7 +4,7 @@ import './header.scss';
 const Header = props => {
   return (
     <div className="header container text-center py-3">
-      <h1>ToDo List</h1>
+      <h1 className='mb-3'>ToDo List</h1>
       <div className="input-group mb-3">
         <input
           id="input"
